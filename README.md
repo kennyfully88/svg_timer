@@ -6,7 +6,7 @@ live demo (ライブデモ): https://kennyfully88.github.io/svg_timer/
 
 ---
 
-![demo](assets/00_complete.gif)
+![demo](assets/gif/demo_1_1_0.gif)
 
 ---
 

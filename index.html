@@ -87,9 +87,12 @@
       }
 
       .speed_control_button {
+        align-items: center;
         border-radius: 5pt;
         background-color: hsl(0, 0%, 100%);
+        display: flex;
         height: 32pt;
+        justify-content: center;
         width: 32pt;
       }
 
@@ -97,6 +100,14 @@
         background-color: hsl(0, 0%, 90%);
         cursor: pointer;
         transform: scale(1.1);
+      }
+
+      .speed_control_button:active {
+        transform: scale(0.9);
+      }
+
+      .speed_control_button_svg {
+        width: 100%;
       }
 
       .speed_control_label {
@@ -139,6 +150,12 @@
       .tile_path:hover {
         fill: hsl(176, 100%, 64%);
       }
+
+      .version-label {
+        position: fixed;
+        right: 8pt;
+        top: 8pt;
+      }
     </style>
     <title>SVG Timer (タイマー)</title>
   </head>
@@ -175,11 +192,31 @@
       </h2>
 
       <div class="speed_control_area">
-        <button class="speed_control_button" data-button-id="up"></button>
+        <button class="speed_control_button" data-button-id="up">
+          <svg
+            class="speed_control_button_svg"
+            viewBox="0 0 320 320"
+            version="1.1"
+          >
+            <path
+              d="m 159.99902,16 a 9.351705,9.864 0 0 0 -6.21234,2.490234 l -134.650118,126.248046 a 9.351705,9.864 0 0 0 6.212345,17.23437 h 65.456298 v 132.16407 a 9.351705,9.864 0 0 0 9.350625,9.86328 h 119.68834 a 9.351705,9.864 0 0 0 9.35063,-9.86328 v -132.16407 h 65.45629 a 9.351705,9.864 0 0 0 6.21234,-17.23437 l -134.65011,-126.248046 a 9.351705,9.864 0 0 0 -6.2143,-2.490234 z"
+            />
+          </svg>
+        </button>
         <div class="speed_control_label_container">
           <h3 class="speed_control_label"></h3>
         </div>
-        <button class="speed_control_button" data-button-id="down"></button>
+        <button class="speed_control_button" data-button-id="down">
+          <svg
+            class="speed_control_button_svg"
+            viewBox="0 0 320 320"
+            version="1.1"
+          >
+            <path
+              d="m 160.00097,304 a 9.351705,9.864 0 0 0 6.21234,-2.49023 l 134.65012,-126.24805 a 9.351705,9.864 0 0 0 -6.21234,-17.23437 h -65.4563 v -132.16407 a 9.351705,9.864 0 0 0 -9.35063,-9.86328 h -119.68834 a 9.351705,9.864 0 0 0 -9.350628,9.86328 v 132.16407 h -65.45629 a 9.351705,9.864 0 0 0 -6.21234,17.23437 l 134.650108,126.24805 a 9.351705,9.864 0 0 0 6.2143,2.49023 z"
+            />
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -191,6 +228,8 @@
       <h3>Tap to animate.</h3>
       <h3>(タップするとアニメーションが見えます。)</h3>
     </div>
+
+    <h2 class="version-label">Version 1.1.0</h2>
   </body>
 </html>
 
