@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+        transition: all 0.1s ease;
+        -moz-user-select: none;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+      }
+
+      Body {
+        align-items: center;
+        background-color: hsl(211, 27%, 44%);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+      }
+
+      h2,
+      h3,
+      h4 {
+        color: hsl(0, 0%, 100%);
+      }
+
+      Svg {
+        border-radius: 10pt;
+        box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.5);
+        margin: 8pt;
+        transform-origin: center;
+      }
+
+      Svg:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+      }
+
+      Svg Path {
+        fill: hsl(235, 100%, 79%);
+      }
+
+      Svg Path:hover {
+        fill: hsl(235, 34%, 56%);
+      }
+
+      .black_circle:hover {
+        fill: hsl(340, 3%, 19%);
+        transform: scale(0.95);
+      }
+
+      .inner_timer_circle {
+        clip-path: url(#timer_path);
+        transition: none;
+        stroke: hsl(350, 100%, 88%);
+        stroke-dasharray: calc(0 / 100 * 439.82297150257) 439.82297150257;
+        stroke-width: 105pt;
+
+        transform: rotate(-90deg);
+      }
+
+      .inner_timer_circle_background {
+        clip-path: url(#timer_path);
+        fill: hsl(256, 100%, 67%);
+      }
+
+      .mt {
+        margin-top: 8pt;
+      }
+
+      .timer_component {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
+      }
+
+      .timer_component_text_area {
+        pointer-events: none;
+        position: absolute;
+        font-size: 32pt;
+      }
+
+      .title_container,
+      .info_container {
+        align-items: center;
+        background-color: hsla(0, 0%, 0%, 0.5);
+        border-radius: 10pt;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 8pt;
+        width: 320px;
+      }
+
+      .tile_path {
+        fill: hsl(176, 100%, 84%);
+      }
+
+      .tile_path:hover {
+        fill: hsl(176, 100%, 64%);
+      }
+    </style>
+    <title>SVG Timer (タイマー)</title>
+  </head>
+  <body>
+    <div class="title_container">
+      <h2>SVG Timer (タイマー)</h2>
+    </div>
+
+    <div class="timer_component">
+      <svg
+        class="timer_area"
+        viewBox="-160 -160 320 320"
+        width="320px"
+        height="320px"
+      >
+        <path d="M -160,-160 L 160,-160 160,160 -160,160 Z" />
+        <path class="tile_path" d="M -160,-160 L 0,-160 0,0 -160,0 Z" />
+        <path class="tile_path" d="M 0,0 L 160,0 160,160 0,160 Z" />
+        <circle class="black_circle" cx="0" cy="0" r="140" />
+
+        <clipPath id="timer_path">
+          <path
+            d="m 26.61329,-141.48828 -26.61329,12.40625 -26.19531,-12.21289 a 144,144 0 0 0 -115.03906,114.82617 l 13.23437,26.46875 -13.23437,26.46875 a 144,144 0 0 0 114.76562,114.76563 l 26.46875,-13.23438 26.46875,13.23438 a 144,144 0 0 0 114.76563,-114.76563 l -13.23438,-26.46875 13.44141,-26.88477 a 144,144 0 0 0 -114.82812,-114.60351 z m -26.61329,45.48828 a 96,96 0 0 1 96,96 96,96 0 0 1 -96,96 96,96 0 0 1 -95.999995,-96 96,96 0 0 1 95.999995,-96 z"
+          />
+        </clipPath>
+
+        <circle class="inner_timer_circle_background" cx="0" cy="0" r="140" />
+        <circle class="inner_timer_circle" cx="0" cy="0" r="70" />
+      </svg>
+      <h2 class="timer_component_text_area">
+        <span class="timer_component_text_label">0</span>%
+      </h2>
+    </div>
+
+    <div class="info_container">
+      <h2>Duration (間): <span class="timer_label">0.00</span> / 1.00</h2>
+    </div>
+
+    <div class="info_container mt">
+      <h3>Tap to animate.</h3>
+      <h3>(タップするとアニメーションが見えます。)</h3>
+    </div>
+  </body>
+</html>
+
+<script>
+  'use strict';
+  const timerArea = document.querySelector('.timer_area');
+  const innerTimerCircle = document.querySelector('.inner_timer_circle');
+  const timerComponentTextLabel = document.querySelector(
+    '.timer_component_text_label'
+  );
+  const timerLabel = document.querySelector('.timer_label');
+  let animationValue = 0.0;
+
+  const animate = () => {
+    if (animationValue >= 1.0) return;
+    animationValue += 0.01;
+
+    innerTimerCircle.style.strokeDasharray = `calc(${
+      animationValue * 100
+    } / 100 * 439.82297150257) 439.82297150257`;
+
+    timerComponentTextLabel.textContent = (animationValue * 100).toFixed(0);
+
+    timerLabel.textContent = animationValue.toFixed(2);
+    requestAnimationFrame(() => animate());
+  };
+
+  timerArea.addEventListener('click', () => {
+    animationValue = 0.0;
+    animate();
+  });
+</script>
