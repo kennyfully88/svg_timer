@@ -26,6 +26,7 @@
         flex-direction: column;
         height: 100vh;
         justify-content: center;
+        position: relative;
       }
 
       h2,
@@ -47,6 +48,7 @@
       }
 
       Svg Path {
+        -webkit-text-fill-color: hsl(235, 100%, 79%);
         fill: hsl(235, 100%, 79%);
       }
 
@@ -83,7 +85,7 @@
         border-radius: 10pt;
         padding: 8pt;
         position: absolute;
-        right: calc(-32pt + -16pt);
+        transform: translate(152pt, -44pt);
       }
 
       .speed_control_button {
@@ -123,6 +125,8 @@
       }
 
       .timer_component {
+        -webkit-border-radius: 10pt;
+        overflow: hidden;
         align-items: center;
         display: flex;
         justify-content: center;
@@ -194,34 +198,34 @@
       <h2 class="timer_component_text_area">
         <span class="timer_component_text_label">0</span>%
       </h2>
+    </div>
 
-      <div class="speed_control_area">
-        <button class="speed_control_button" data-button-id="up">
-          <svg
-            class="speed_control_button_svg"
-            viewBox="0 0 320 320"
-            version="1.1"
-          >
-            <path
-              d="m 159.99902,16 a 9.351705,9.864 0 0 0 -6.21234,2.490234 l -134.650118,126.248046 a 9.351705,9.864 0 0 0 6.212345,17.23437 h 65.456298 v 132.16407 a 9.351705,9.864 0 0 0 9.350625,9.86328 h 119.68834 a 9.351705,9.864 0 0 0 9.35063,-9.86328 v -132.16407 h 65.45629 a 9.351705,9.864 0 0 0 6.21234,-17.23437 l -134.65011,-126.248046 a 9.351705,9.864 0 0 0 -6.2143,-2.490234 z"
-            />
-          </svg>
-        </button>
-        <div class="speed_control_label_container">
-          <h3 class="speed_control_label"></h3>
-        </div>
-        <button class="speed_control_button" data-button-id="down">
-          <svg
-            class="speed_control_button_svg"
-            viewBox="0 0 320 320"
-            version="1.1"
-          >
-            <path
-              d="m 160.00097,304 a 9.351705,9.864 0 0 0 6.21234,-2.49023 l 134.65012,-126.24805 a 9.351705,9.864 0 0 0 -6.21234,-17.23437 h -65.4563 v -132.16407 a 9.351705,9.864 0 0 0 -9.35063,-9.86328 h -119.68834 a 9.351705,9.864 0 0 0 -9.350628,9.86328 v 132.16407 h -65.45629 a 9.351705,9.864 0 0 0 -6.21234,17.23437 l 134.650108,126.24805 a 9.351705,9.864 0 0 0 6.2143,2.49023 z"
-            />
-          </svg>
-        </button>
+    <div class="speed_control_area">
+      <button class="speed_control_button" data-button-id="up">
+        <svg
+          class="speed_control_button_svg"
+          viewBox="0 0 320 320"
+          version="1.1"
+        >
+          <path
+            d="m 159.99902,16 a 9.351705,9.864 0 0 0 -6.21234,2.490234 l -134.650118,126.248046 a 9.351705,9.864 0 0 0 6.212345,17.23437 h 65.456298 v 132.16407 a 9.351705,9.864 0 0 0 9.350625,9.86328 h 119.68834 a 9.351705,9.864 0 0 0 9.35063,-9.86328 v -132.16407 h 65.45629 a 9.351705,9.864 0 0 0 6.21234,-17.23437 l -134.65011,-126.248046 a 9.351705,9.864 0 0 0 -6.2143,-2.490234 z"
+          />
+        </svg>
+      </button>
+      <div class="speed_control_label_container">
+        <h3 class="speed_control_label"></h3>
       </div>
+      <button class="speed_control_button" data-button-id="down">
+        <svg
+          class="speed_control_button_svg"
+          viewBox="0 0 320 320"
+          version="1.1"
+        >
+          <path
+            d="m 160.00097,304 a 9.351705,9.864 0 0 0 6.21234,-2.49023 l 134.65012,-126.24805 a 9.351705,9.864 0 0 0 -6.21234,-17.23437 h -65.4563 v -132.16407 a 9.351705,9.864 0 0 0 -9.35063,-9.86328 h -119.68834 a 9.351705,9.864 0 0 0 -9.350628,9.86328 v 132.16407 h -65.45629 a 9.351705,9.864 0 0 0 -6.21234,17.23437 l 134.650108,126.24805 a 9.351705,9.864 0 0 0 6.2143,2.49023 z"
+          />
+        </svg>
+      </button>
     </div>
 
     <div class="info_container">
